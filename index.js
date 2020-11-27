@@ -7,25 +7,27 @@ const app = express();
 app.disable("x-powered-by");
 app.use(morgan("tiny"));
 
-glob.sync("api/**/*.js").forEach((file) => {
-  let func;
-  const requiredFile = require(`./${file}`);
+glob
+  .sync("api/**/*.js", { ignore: ["api/node_modules/**"] })
+  .forEach((file) => {
+    let func;
+    const requiredFile = require(`./${file}`);
 
-  if (typeof requiredFile === "function") {
-    func = requiredFile;
-  } else if (typeof requiredFile.default === "function") {
-    func = requiredFile.default;
-  } else {
-    return;
-  }
+    if (typeof requiredFile === "function") {
+      func = requiredFile;
+    } else if (typeof requiredFile.default === "function") {
+      func = requiredFile.default;
+    } else {
+      return;
+    }
 
-  const endpoint = file
-    .replace(/^api/, "")
-    .replace(/\.js$/, "")
-    .replace(/index$/, "");
+    const endpoint = file
+      .replace(/^api/, "")
+      .replace(/\.js$/, "")
+      .replace(/index$/, "");
 
-  app.all(endpoint, asyncHandler(func));
-});
+    app.all(endpoint, asyncHandler(func));
+  });
 
 app.use((err, req, res, next) => {
   if (err) {
