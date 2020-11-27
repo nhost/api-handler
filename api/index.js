@@ -1,4 +1,7 @@
+import { add } from "./utils";
+
 module.exports = (req, res) => {
   const { name = "World" } = req.query;
-  res.send(`Time to save the world! ${name}!`);
+  const sum = add(1, 2);
+  res.send(`sum: ${sum}!`);
 };
