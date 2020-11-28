@@ -4,6 +4,7 @@ import asyncHandler from "express-async-handler";
 import morgan from "morgan";
 const app = express();
 
+app.use(express.json());
 app.disable("x-powered-by");
 app.use(morgan("tiny"));
 
