@@ -3,11 +3,13 @@
 if [ -f "api/package-lock.json" ]; then
   cp api/package*.json .
   npm install
-  npm add express express-async-handler glob morgan nodemon
+  npm add express express-async-handler glob morgan
+  npm add --save-dev @types/express @types/glob @types/morgan@1.9.0 @types/node nodemon ts-node typescript
   npm cache clean --force
 else
   cp api/package.json api/yarn.lock . || true
   yarn install || true
-  yarn add express express-async-handler glob morgan nodemon
+  yarn add express express-async-handler glob morgan
+  yarn add -D @types/express @types/glob @types/morgan@1.9.0 @types/node nodemon ts-node typescript
   yarn cache clean
 fi
