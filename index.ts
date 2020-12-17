@@ -18,7 +18,6 @@ glob
     if (typeof requiredFile === "function") {
       func = requiredFile;
     } else if (typeof requiredFile.default === "function") {
-      console.log("default is function");
       func = requiredFile.default;
     } else {
       return;
@@ -32,22 +31,10 @@ glob
     app.all(endpoint, asyncHandler(func));
   });
 
-interface Error {
-  output?: {
-    payload?: Record<string, unknown>;
-    statusCode?: number;
-  };
-  details?: [
-    {
-      message?: string;
-    }
-  ];
-}
-
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   if (err) {
     res.status(500).json({
-      fail: "yep",
+      error: err,
     });
   }
 });
