@@ -1,4 +1,4 @@
 #!/bin/sh
 
 ./node_modules/.bin/tsc -p .
-node dist/index.js
+cd dist && node index.js
