@@ -1,4 +1,4 @@
-FROM node:14.15.1-alpine3.10
+FROM node:14.15.1-alpine3.12
 
 WORKDIR /usr/src/app
 COPY tsconfig.json install.sh entrypoint-dev.sh entrypoint-prod.sh index.ts ./
