@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 if [ -f "api/package-lock.json" ]; then
   cp api/package*.json .
