@@ -1,6 +1,6 @@
 {
   "name": "api-handler",
-  "version": "0.1.4",
+  "version": "0.2.7",
   "main": "index.js",
   "repository": "git@github.com:nhost/api-handler.git",
   "author": "elitan <johan@eliasson.me>",
