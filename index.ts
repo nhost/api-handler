@@ -40,4 +40,8 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   }
 });
 
+app.get("/healthz", (req, res) => {
+  res.send("ok");
+});
+
 app.listen(process.env.PORT || 3010, () => console.log("Server ready"));
